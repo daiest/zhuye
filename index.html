@@ -1,95 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>快来康康</title>
-    <style>
-        /* 其他样式保持不变 */
-        .large-button {
-            font-size: 26px;
-            padding: 10px 5px;
-            border: 10px solid #333;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-            position: fixed;
-            bottom: 10px;
-            left: 10%;
-            transform: translateX(-50%);
-        }
-    </style>
-</head>
 <body>
-
-    <!-- 视频播放器 -->
-    <video id="videoPlayer" controls webkit-playsinline playsinline preload="auto">
-        <!-- 视频源将通过JavaScript动态设置 -->
-    </video>
-
-    <!-- 切换视频按钮 -->
-    <button class="large-button" onclick="switchToNextVideo()">下一条</button>
-
-    <!-- 免责声明 -->
-    <div class="disclaimer">
-        <!-- 免责声明内容 -->
-    </div>
-
-    <script>
-        // 视频源数组
-        var videoSources = [
-            "http://api.yujn.cn/api/xjj.php",
-            "http://api.yujn.cn/api/zzxjj.php",
-            "https://api.yujn.cn/api/nvda.php",
-            "https://api.yujn.cn/api/tongtong.php",
-            "http://api.yujn.cn/api/heisis.php",
-            "http://api.yujn.cn/api/baisis.php",
-            "http://api.yujn.cn/api/juhexjj.php",
-            "http://api.yujn.cn/api/shwd.php",
-            "http://api.yujn.cn/api/wmsc.php",
-            "https://www.xc6b.com/content/templates/XCNEW/tools/sister_video"
-            // ... 更多视频源
-            // 确保数组中的每个视频源URL都是有效的
-        ];
-        var currentVideoIndex = 0;
-
-        function switchToNextVideo() {
-            var videoPlayer = document.getElementById('videoPlayer');
-            if (videoPlayer) {
-                // 立即播放下一个视频源
-                var nextVideoSrc = videoSources[currentVideoIndex];
-                
-                // 先暂停当前视频
-                videoPlayer.pause();
-                
-                // 更新视频源并加载视频
-                videoPlayer.src = nextVideoSrc;
-                videoPlayer.load(); // 重置视频元素的src属性后，需要调用load()方法
-                
-                // 监听视频是否可以播放，然后再播放
-                videoPlayer.addEventListener('canplay', function() {
-                    videoPlayer.play().catch(function(e) {
-                        console.error('播放视频时出错:', e);
-                    });
-                });
-            }
-            // 更新索引到下一个视频
-            currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+  <!-- 视频播放器 -->
+  <meta charset="UTF-8"/>
+  <title>快来康康
+  </title>
+  <!-- 切换视频按钮 -->
+  <!-- 免责声明 -->
+  <div class="disclaimer">
+    <!-- 免责声明内容 -->
+  </div>
+  <script>
+    // 视频源数组
+    var videoSources = [
+      "http://api.yujn.cn/api/xjj.php",
+      "http://api.yujn.cn/api/zzxjj.php",
+      "https://api.yujn.cn/api/nvda.php",
+      "https://api.yujn.cn/api/tongtong.php",
+      "http://api.yujn.cn/api/heisis.php",
+      "http://api.yujn.cn/api/baisis.php",
+      "http://api.yujn.cn/api/juhexjj.php",
+      "http://api.yujn.cn/api/shwd.php",
+      "http://api.yujn.cn/api/wmsc.php",
+      "https://www.xc6b.com/content/templates/XCNEW/tools/sister_video"
+      // ... 更多视频源
+      // 确保数组中的每个视频源URL都是有效的
+    ];
+    var currentVideoIndex = 0;
+    function switchToNextVideo() {
+      var videoPlayer = document.getElementById('videoPlayer');
+      if (videoPlayer) {
+        // 立即播放下一个视频源
+        var nextVideoSrc = videoSources[currentVideoIndex];
+        // 先暂停当前视频
+        videoPlayer.pause();
+        // 更新视频源并加载视频
+        videoPlayer.src = nextVideoSrc;
+        videoPlayer.load();
+        // 重置视频元素的src属性后，需要调用load()方法
+        // 监听视频是否可以播放，然后再播放
+        videoPlayer.addEventListener('canplay', function() {
+          videoPlayer.play().catch(function(e) {
+            console.error('播放视频时出错:', e);
+          }
+                                  );
         }
-
-        // 监听视频播放结束事件，自动播放下一个视频
-        var videoPlayer = document.getElementById('videoPlayer');
-        videoPlayer.addEventListener('ended', switchToNextVideo);
-
-        // 页面加载时自动加载并播放第一个视频
-        document.addEventListener('DOMContentLoaded', function() {
-            switchToNextVideo();
-        });
-        document.getElementById('videoPlayer').addEventListener('下一条', function() {
-    this.muted = false;
-});
-
-    </script>
-
+                                    );
+      }
+      // 更新索引到下一个视频
+      currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+    }
+    // 监听视频播放结束事件，自动播放下一个视频
+    var videoPlayer = document.getElementById('videoPlayer');
+    videoPlayer.addEventListener('ended', switchToNextVideo);
+    // 页面加载时自动加载并播放第一个视频
+    document.addEventListener('DOMContentLoaded', function() {
+      switchToNextVideo();
+    }
+                             );
+    document.getElementById('videoPlayer').addEventListener('下一条', function() {
+      this.muted = false;
+    }
+                                                           );
+  </script>
+  <video allowfullscreen="allowfullscreen" id="videoPlayer" controls="controls" webkit-playsinline="" playsinline="" preload="auto" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgc3R5bGU9ImZpbGw6IHJnYmEoMCwwLDAsMC4xNSk7IHRyYW5zZm9ybTogc2NhbGUoMC43NSkiPgogICAgICAgIDxwYXRoIGQ9Ik04LjUgMTMuNWwyLjUgMyAzLjUtNC41IDQuNSA2SDVtMTYgMVY1YTIgMiAwIDAgMC0yLTJINWMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxNGMxLjEgMCAyLS45IDItMnoiPjwvcGF0aD4KICAgICAgPC9zdmc+">
+    <!-- 视频源将通过JavaScript动态设置 -->
+  </video>
+  <button type="button" class="large-button">下一条</button>
 </body>
-</html>
