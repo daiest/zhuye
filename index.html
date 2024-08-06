@@ -1,37 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<video id="player" controls="" webkit-playsinline="" playsinline="" src="http://api.yujn.cn/api/xjj.php"></video>
-<video id="player" controls="" webkit-playsinline="" playsinline="" src="http://api.yujn.cn/api/zzxjj.php"></video>
-<video id="player" controls="" webkit-playsinline="" playsinline="" src="https://api.yujn.cn/api/nvda.php"></video>
-<video id="player" controls="" webkit-playsinline="" playsinline="" src="https://api.yujn.cn/api/tongtong.php"></video>
-<video id="player" controls="" webkit-playsinline="" playsinline="" src=" http://api.yujn.cn/api/heisis.php"></video>
-<video id="player" controls="" webkit-playsinline="" playsinline="" src="http://api.yujn.cn/api/baisis.php"></video>
-<video id="player" controls="" webkit-playsinline="" playsinline="" src="http://api.yujn.cn/api/juhexjj.php
-"></video>
-<video id="player" controls="" webkit-playsinline="" playsinline="" src="http://api.yujn.cn/api/shwd.php"></video>
-<video id="player" controls="" webkit-playsinline="" playsinline="" src="http://api.yujn.cn/api/wmsc.php"></video>
-<video id="player" controls="" webkit-playsinline="" playsinline="" src="https://www.xc6b.com/content/templates/XCNEW/tools/sister_video"></video>
-    <title>Large Refresh Button</title>
+    <meta charset="UTF-8">
+    <title>快来康康</title>
     <style>
-        /* 定义按钮的样式 */
+        /* 其他样式保持不变 */
         .large-button {
-            font-size: 20px;    /* 设置字体大小 */
-            padding: 10px 20px; /* 设置内边距，增加按钮的宽度和高度 */
-            border: 2px solid #333; /* 设置边框样式 */
-            background-color: #007bff; /* 设置背景颜色 */
-            color: white; /* 设置文字颜色 */
-            cursor: pointer; /* 鼠标悬停时显示指针 */
-            border-radius: 5px; /* 设置边框圆角 */
+            font-size: 20px;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
-    <div style="margin-top: 50px; font-size: 14px;">
-    <p><strong>免责声明：</strong> 本站不存储任何视频内容，所有视频解析接口也来自于互联网，请勿用于任何商业用途，否则后果自负。解析中出现的广告勿信，广告由接口内置与本站无关，有疑问发邮2741830473@qq.com。<br>
-    本站仅获取互联网视频供学习交流使用，我们尊重任何视频版权，如果无意侵犯了您的合法权益，请联系我们，我们将及时处理。使用本网站即表示您同意我们的<a href="#">服务条款</a>和<a href="#">隐私政策</a>。</p>
-</div>
-    </head>
+</head>
 <body>
 
-    <!-- 这是样式更大的刷新按钮 -->
-    <button class="large-button" onclick="window.location.reload();">下一波</button>
+    <!-- 视频播放器 -->
+    <video id="videoPlayer" controls webkit-playsinline playsinline preload="auto">
+        <!-- 视频源将通过JavaScript动态设置 -->
+    </video>
+
+    <!-- 切换视频按钮 -->
+    <button class="large-button" onclick="switchToNextVideo()">下一条</button>
+
+    <!-- 免责声明 -->
+    <div class="disclaimer">
+        <!-- 免责声明内容 -->
+    </div>
+
+    <script>
+        // 视频源数组
+        var videoSources = [
+            "http://api.yujn.cn/api/xjj.php",
+            "http://api.yujn.cn/api/zzxjj.php",
+            "https://api.yujn.cn/api/nvda.php",
+            "https://api.yujn.cn/api/tongtong.php",
+            "http://api.yujn.cn/api/heisis.php",
+            "http://api.yujn.cn/api/baisis.php",
+            "http://api.yujn.cn/api/juhexjj.php",
+            "http://api.yujn.cn/api/shwd.php",
+            "http://api.yujn.cn/api/wmsc.php",
+            "https://www.xc6b.com/content/templates/XCNEW/tools/sister_video"
+            // ... 更多视频源
+            // 确保数组中的每个视频源URL都是有效的
+        ];
+        var currentVideoIndex = 0;
+
+        function switchToNextVideo() {
+            var videoPlayer = document.getElementById('videoPlayer');
+            if (videoPlayer) {
+                // 立即播放下一个视频源
+                var nextVideoSrc = videoSources[currentVideoIndex];
+                
+                // 先暂停当前视频
+                videoPlayer.pause();
+                
+                // 更新视频源并加载视频
+                videoPlayer.src = nextVideoSrc;
+                videoPlayer.load(); // 重置视频元素的src属性后，需要调用load()方法
+                
+                // 监听视频是否可以播放，然后再播放
+                videoPlayer.addEventListener('canplay', function() {
+                    videoPlayer.play().catch(function(e) {
+                        console.error('播放视频时出错:', e);
+                    });
+                });
+            }
+            // 更新索引到下一个视频
+            currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+        }
+
+        // 监听视频播放结束事件，自动播放下一个视频
+        var videoPlayer = document.getElementById('videoPlayer');
+        videoPlayer.addEventListener('ended', switchToNextVideo);
+
+        // 页面加载时自动加载并播放第一个视频
+        document.addEventListener('DOMContentLoaded', function() {
+            switchToNextVideo();
+        });
+        document.getElementById('videoPlayer').addEventListener('下一条', function() {
+    this.muted = false;
+});
+
+    </script>
+
+</body>
+</html>
