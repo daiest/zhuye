@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,29 +13,73 @@
             color: white;
             cursor: pointer;
             border-radius: 5px;
+            position: fixed; /* 按钮固定定位 */
+            right: 20px; /* 按钮距离页面右侧20px */
+            bottom: 20px; /* 按钮距离页面底部20px */
         }
     </style>
 </head>
 <body>
 
-<video id="player" controls webkit-playsinline playsinline src="https://www.xc6b.com/content/templates/XCNEW/tools/sister_video"> 
+<video id="player" controls webkit-playsinline playsinline>
+    <video id="player" controls webkit-playsinline playsinline src="https://www.xc6b.com/content/templates/XCNEW/tools/sister_video"> 
     Your browser does not support the video tag.
 </video> 
+    <video id="player" controls webkit-playsinline playsinline>
+    <video id="player" controls webkit-playsinline playsinline src="http://api.yujn.cn/api/zzxjj.php"> 
+    Your browser does not support the video tag.
+</video> 
+        <video id="player" controls webkit-playsinline playsinline>
+    <video id="player" controls webkit-playsinline playsinline src="http://api.yujn.cn/api/xjj.php
+"> 
+    Your browser does not support the video tag.
+</video> 
+ <video id="player" controls webkit-playsinline playsinline src="https://api.yujn.cn/api/nvda.php
+"> 
+    Your browser does not support the video tag.
+</video> 
+<video id="player" controls webkit-playsinline playsinline src="https://api.yujn.cn/api/tongtong.php
 
-<!-- 这是样式更大的播放按钮 -->
-<button class="large-button" onclick="playVideo()">播放</button>
+"> 
+    Your browser does not support the video tag.
+</video> 
+<video id="player" controls webkit-playsinline playsinline src=" http://api.yujn.cn/api/heisis.php
 
-<!-- 这是样式更大的刷新按钮 -->
-<button class="large-button" onclick="reloadAndPlayVideo()">下一个</button>
-    <video id="player" controls webkit-playsinline playsinline src="https://api.bokexia.com/api/mn
+"> 
+    Your browser does not support the video tag.
+</video> 
+<video id="player" controls webkit-playsinline playsinline src="  http://api.yujn.cn/api/baisis.php
+
+
+"> 
+    Your browser does not support the video tag.
+</video> 
+<video id="player" controls webkit-playsinline playsinline src="  http://api.yujn.cn/api/juhexjj.php
+
+
+"> 
+    Your browser does not support the video tag.
+</video> 
+            <video id="player" controls webkit-playsinline playsinline src=" http://api.yujn.cn/api/shwd.php
+
+
+"> 
+    Your browser does not support the video tag.
+</video> 
+ <video id="player" controls webkit-playsinline playsinline src=" http://api.yujn.cn/api/wmsc.php
+
+
 "> 
     Your browser does not support the video tag.
 </video> 
 
-<!-- 这是样式更大的播放按钮 -->
-<button class="large-button" onclick="playVideo()">播放</button>
 
-<!-- 这是样式更大的刷新按钮 -->
+
+
+
+
+
+<!-- 这是样式更大的刷新按钮，固定在右侧 -->
 <button class="large-button" onclick="reloadAndPlayVideo()">下一个</button>
 
 <!-- 免责声明 -->
@@ -49,22 +92,8 @@
     // 获取视频元素
     var video = document.getElementById('player');
 
-    // 定义函数以在用户点击播放按钮后播放视频
-    function playVideo() {
-        // 尝试播放视频
-        video.play().catch(function() {
-            // 如果播放失败，我们记录一条消息到控制台
-            console.log('Play was prevented by the browser.');
-        });
-    }
-
     // 定义函数以在用户点击刷新按钮后刷新页面并尝试播放视频
     function reloadAndPlayVideo() {
-        // 刷新页面前，尝试播放视频
-        video.play().catch(function() {
-            console.log('Autoplay was prevented by the browser.');
-        });
-
         // 刷新页面
         window.location.reload();
     }
