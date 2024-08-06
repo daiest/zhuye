@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,8 @@
     <style>
         /* 定义按钮的样式 */
         .large-button {
-            font-size: 20px;
-            padding: 10px 20px;
+            font-size: 24px; /* 增加字体大小 */
+            padding: 35px 45px; /* 增加内边距，使按钮更大 */
             border: 2px solid #333;
             background-color: #007bff;
             color: white;
@@ -22,6 +23,9 @@
     Your browser does not support the video tag.
 </video> 
 
+<!-- 这是样式更大的播放按钮 -->
+<button class="large-button" onclick="playVideo()">播放</button>
+
 <!-- 这是样式更大的刷新按钮 -->
 <button class="large-button" onclick="reloadAndPlayVideo()">下一个</button>
 
@@ -29,28 +33,25 @@
     // 获取视频元素
     var video = document.getElementById('player');
 
-    // 设置视频自动播放属性
-    video.autoplay = true;
-    // 某些浏览器要求视频自动播放时必须是静音的
-    video.muted = true;
+    // 定义函数以在用户点击播放按钮后播放视频
+    function playVideo() {
+        // 尝试播放视频
+        video.play().catch(function() {
+            // 如果播放失败，我们记录一条消息到控制台
+            console.log('Play was prevented by the browser.');
+        });
+    }
 
-    // 刷新页面并播放视频的函数
+    // 定义函数以在用户点击刷新按钮后刷新页面并尝试播放视频
     function reloadAndPlayVideo() {
-        // 刷新页面前，确保视频是自动播放的
-        // 这里再次设置属性以确保刷新后视频自动播放
-        video.autoplay = true;
-        video.muted = true;
+        // 刷新页面前，尝试播放视频
+        video.play().catch(function() {
+            console.log('Autoplay was prevented by the browser.');
+        });
 
         // 刷新页面
         window.location.reload();
     }
-
-    // 页面加载完成后，如果autoplay没有成功触发播放，手动触发一次
-    document.addEventListener('DOMContentLoaded', function() {
-        if (!video.paused) {
-            video.play();
-        }
-    });
 </script>
 
 </body>
