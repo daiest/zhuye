@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>好康的</title>
+    <title>视频播放器</title>
     <style>
         /* 定义按钮的样式 */
-        .large-button {
+        #next-button {
             font-size: 24px;
             padding: 15px 30px;
             border: 2px solid #333;
@@ -22,81 +22,56 @@
 <body>
 
 <video id="player" controls webkit-playsinline playsinline>
-    <video id="player" controls webkit-playsinline playsinline src="https://www.xc6b.com/content/templates/XCNEW/tools/sister_video"> 
-    Your browser does not support the video tag.
-</video> 
-    <video id="player" controls webkit-playsinline playsinline>
-    <video id="player" controls webkit-playsinline playsinline src="http://api.yujn.cn/api/zzxjj.php"> 
-    Your browser does not support the video tag.
-</video> 
-        <video id="player" controls webkit-playsinline playsinline>
-    <video id="player" controls webkit-playsinline playsinline src="http://api.yujn.cn/api/xjj.php
-"> 
-    Your browser does not support the video tag.
-</video> 
- <video id="player" controls webkit-playsinline playsinline src="https://api.yujn.cn/api/nvda.php
-"> 
-    Your browser does not support the video tag.
-</video> 
-<video id="player" controls webkit-playsinline playsinline src="https://api.yujn.cn/api/tongtong.php
-
-"> 
-    Your browser does not support the video tag.
-</video> 
-<video id="player" controls webkit-playsinline playsinline src=" http://api.yujn.cn/api/heisis.php
-
-"> 
-    Your browser does not support the video tag.
-</video> 
-<video id="player" controls webkit-playsinline playsinline src="  http://api.yujn.cn/api/baisis.php
-
-
-"> 
-    Your browser does not support the video tag.
-</video> 
-<video id="player" controls webkit-playsinline playsinline src="  http://api.yujn.cn/api/juhexjj.php
-
-
-"> 
-    Your browser does not support the video tag.
-</video> 
-            <video id="player" controls webkit-playsinline playsinline src=" http://api.yujn.cn/api/shwd.php
-
-
-"> 
-    Your browser does not support the video tag.
-</video> 
- <video id="player" controls webkit-playsinline playsinline src=" http://api.yujn.cn/api/wmsc.php
-
-
-"> 
     Your browser does not support the video tag.
 </video> 
 
-
-
-
-
-
-
-<!-- 这是样式更大的刷新按钮，固定在右侧 -->
-<button class="large-button" onclick="reloadAndPlayVideo()">下一个</button>
-
-<!-- 免责声明 -->
-<div style="margin-top: 50px; font-size: 14px;">
-    <p><strong>免责声明：</strong> 本站不存储任何视频内容，所有视频解析接口也来自于互联网，请勿用于任何商业用途，否则后果自负。解析中出现的广告勿信，广告由接口内置与本站无关，有疑问发邮2741830473@qq.com。<br>
-    本站仅获取互联网视频供学习交流使用，我们尊重任何视频版权，如果无意侵犯了您的合法权益，请联系我们，我们将及时处理。使用本网站即表示您同意我们的<a href="#">服务条款</a>和<a href="#">隐私政策</a>。</p>
-</div>
+<!-- 刷新按钮，用于播放下一个视频 -->
+<button id="next-button" onclick="loadAndPlayNextVideo()">下一个视频</button>
 
 <script>
-    // 获取视频元素
-    var video = document.getElementById('player');
+    // 可用的视频接口列表
+    var videoApis = [
+        'http://api.yujn.cn/api/zzxjj.php',
+        'http://api.yujn.cn/api/xjj.php',
+        'https://api.yujn.cn/api/nvda.php',
+        'https://api.yujn.cn/api/tongtong.php',
+        'http://api.yujn.cn/api/heisis.php',
+        'http://api.yujn.cn/api/baisis.php',
+        'http://api.yujn.cn/api/juhexjj.php',
+        'http://api.yujn.cn/api/shwd.php',
+        'http://api.yujn.cn/api/wmsc.php'
+    ];
+    var currentVideoIndex = 0;
 
-    // 定义函数以在用户点击刷新按钮后刷新页面并尝试播放视频
-    function reloadAndPlayVideo() {
-        // 刷新页面
-        window.location.reload();
+    // 定义函数以从接口获取视频数据并播放视频
+    function loadAndPlayVideo(videoApiUrl) {
+        fetch(videoApiUrl) // 这里需要确保API返回的是视频URL
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // 假设API返回的是纯文本URL
+            })
+            .then(function(videoUrl) {
+                var video = document.getElementById('player');
+                video.src = videoUrl; // 设置视频源
+                video.play(); // 播放视频
+            })
+            .catch(function(error) {
+                console.error('获取视频数据失败:', error);
+            });
     }
+
+    // 定义函数以加载并播放下一个视频
+    function loadAndPlayNextVideo() {
+        currentVideoIndex = (currentVideoIndex + 1) % videoApis.length;
+        loadAndPlayVideo(videoApis[currentVideoIndex]);
+    }
+
+    // 页面加载时自动播放第一个视频
+    document.addEventListener('DOMContentLoaded', function() {
+        loadAndPlayVideo(videoApis[currentVideoIndex]);
+    });
 </script>
 
 </body>
