@@ -1,23 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<video id="player" controls="" webkit-playsinline="" playsinline="" src="https://www.xc6b.com/content/templates/XCNEW/tools/sister_video"></video>
     <meta charset="UTF-8">
     <title>好康的</title>
     <style>
         /* 定义按钮的样式 */
         .large-button {
-            font-size: 20px;    /* 设置字体大小 */
-            padding: 10px 20px; /* 设置内边距，增加按钮的宽度和高度 */
-            border: 2px solid #333; /* 设置边框样式 */
-            background-color: #007bff; /* 设置背景颜色 */
-            color: white; /* 设置文字颜色 */
-            cursor: pointer; /* 鼠标悬停时显示指针 */
-            border-radius: 5px; /* 设置边框圆角 */
+            font-size: 20px;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 这是样式更大的刷新按钮 -->
-    <button class="large-button" onclick="window.location.reload();">下一个</button>
+<video id="player" controls webkit-playsinline playsinline src="https://www.xc6b.com/content/templates/XCNEW/tools/sister_video">
+    Your browser does not support the video tag.
+</video> 
+
+<!-- 这是样式更大的刷新按钮 -->
+<button class="large-button" onclick="reloadAndPlayVideo()">下一个</button>
+
+<script>
+    // 获取视频元素
+    var video = document.getElementById('player');
+
+    // 设置视频自动播放属性
+    video.autoplay = true;
+    // 某些浏览器要求视频自动播放时必须是静音的
+    video.muted = true;
+
+    // 刷新页面并播放视频的函数
+    function reloadAndPlayVideo() {
+        // 刷新页面前，确保视频是自动播放的
+        // 这里再次设置属性以确保刷新后视频自动播放
+        video.autoplay = true;
+        video.muted = true;
+
+        // 刷新页面
+        window.location.reload();
+    }
+
+    // 页面加载完成后，如果autoplay没有成功触发播放，手动触发一次
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!video.paused) {
+            video.play();
+        }
+    });
+</script>
+
+</body>
+</html>
