@@ -2,28 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>快来康康</title>
     <style>
-        /* 其他样式保持不变 */
+     
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://picture.gptkong.com/20240829/111238f764b53a43b9a4dc9dcf6d3ea2fc.png'); /* 替换为您的背景图片URL */
+            background-size: cover; /* 使背景图片覆盖整个元素 */
+            background-position: center; /* 将背景图片定位到元素的中心 */
+            background-repeat: no-repeat; /* 防止背景图片重复 */
+            background-attachment: fixed; /* 滚动时背景图片固定 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #videoPlayer {
+            width: 80%;
+            max-width: 960px; /* 可以根据需要调整 */
+        }
+       
         .large-button {
-            font-size: 50px;
-            padding: 50px 100px;
+            font-size: 24px;
+            padding: 20px 50px;
             border: 2px solid #333;
             background-color: #007bff;
             color: white;
             cursor: pointer;
             border-radius: 5px;
             position: fixed;
-            bottom: 10px;
-            left: 20%;
+            bottom: 20px;
+            left: 50%;
             transform: translateX(-50%);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .large-button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            #videoPlayer {
+                width: 100%;
+            }
+            .large-button {
+                font-size: 18px;
+                padding: 15px 40px;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- 视频播放器 -->
-    <video id="videoPlayer" controls webkit-playsinline playsinline preload="auto">
+    <video id="videoPlayer" controls preload="auto" style="width: 80%;">
         <!-- 视频源将通过JavaScript动态设置 -->
     </video>
 
@@ -31,7 +71,7 @@
     <button class="large-button" onclick="switchToNextVideo()">下一条</button>
 
     <!-- 免责声明 -->
-    <div class="disclaimer">
+    <div class="disclaimer" style="text-align: center; margin-top: 30px;">
         <!-- 免责声明内容 -->
     </div>
 
@@ -56,39 +96,27 @@
         function switchToNextVideo() {
             var videoPlayer = document.getElementById('videoPlayer');
             if (videoPlayer) {
-                // 立即播放下一个视频源
                 var nextVideoSrc = videoSources[currentVideoIndex];
-                
-                // 先暂停当前视频
+
                 videoPlayer.pause();
-                
-                // 更新视频源并加载视频
                 videoPlayer.src = nextVideoSrc;
-                videoPlayer.load(); // 重置视频元素的src属性后，需要调用load()方法
-                
-                // 监听视频是否可以播放，然后再播放
-                videoPlayer.addEventListener('canplay', function() {
+                videoPlayer.load();
+
+                videoPlayer.addEventListener('loadeddata', function() {
                     videoPlayer.play().catch(function(e) {
                         console.error('播放视频时出错:', e);
+                        switchToNextVideo(); // 尝试播放下一个视频
                     });
                 });
             }
-            // 更新索引到下一个视频
             currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
         }
 
-        // 监听视频播放结束事件，自动播放下一个视频
-        var videoPlayer = document.getElementById('videoPlayer');
         videoPlayer.addEventListener('ended', switchToNextVideo);
 
-        // 页面加载时自动加载并播放第一个视频
         document.addEventListener('DOMContentLoaded', function() {
             switchToNextVideo();
         });
-        document.getElementById('videoPlayer').addEventListener('下一条', function() {
-    this.muted = false;
-});
-
     </script>
 
 </body>
