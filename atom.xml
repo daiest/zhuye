@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://daiest.github.io</id>
+    <title>李瑞锦的网站</title>
+    <updated>2024-09-04T12:13:45.623Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://daiest.github.io"/>
+    <link rel="self" href="https://daiest.github.io/atom.xml"/>
+    <subtitle>666</subtitle>
+    <logo>https://daiest.github.io/images/avatar.png</logo>
+    <icon>https://daiest.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2024, 李瑞锦的网站</rights>
+    <entry>
+        <title type="html"><![CDATA[1]]></title>
+        <id>https://daiest.github.io/1/</id>
+        <link href="https://daiest.github.io/1/">
+        </link>
+        <updated>2024-09-04T12:02:13.000Z</updated>
+        <content type="html"><![CDATA[<p>新文章</p>
+]]></content>
+    </entry>
+</feed>
