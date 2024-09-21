@@ -1,0 +1,161 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <meta name="msvalidate.01" content="E4DCA6E1C8DC38BFCCB1687815990636" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>呆est，你被骗了</title>
+    <meta name="msvalidate.01" content="E4DCA6E1C8DC38BFCCB1687815990636" />
+    <style>
+        body 
+       {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://picture.gptkong.com/20240829/111238f764b53a43b9a4dc9dcf6d3ea2fc.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #videoPlayer {
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 60px; /* 增加视频区域与评论区域之间的距离 */
+        }
+        .large-button {
+            font-size: 24px;
+            padding: 20px 50px;
+            border: 2px solid #333;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .large-button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+        /* 响应式设计 *
+          @media (max-width: 768px) {
+            #videoPlayer {
+                width: 100%;
+            }
+            .large-button {
+                font-size: 18px;
+                padding: 15px 40px;
+            }
+        }
+        /* 搜狐畅言评论区域样式 */
+        #SOHUCS {
+            width: 80%;
+            max-width: 960px;
+            margin-bottom: 60px; /* 确保评论区域与底部有足够的空间 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 视频播放器 -->
+    <video id="videoPlayer" controls preload="auto">
+        <!-- 视频源将通过JavaScript动态设置 -->
+    </video>
+
+    <!-- 切换视频按钮 -->
+    <button class="large-button" onclick="switchToNextVideo()">下一条</button>
+
+    <!-- 搜狐畅言评论区域 -->
+    <div id="SOHUCS"></div> 
+
+    <script>
+        // 视频源数组（示例中URL已被修改为有效的在线视频源，请替换为实际视频源）
+        var videoSources = [
+           "https://vdse.bdstatic.com//192d9a98d782d9c74c96f09db9378d93.mp4"
+        ];
+        var currentVideoIndex = 0;
+
+        function switchToNextVideo() {
+            var videoPlayer = document.getElementById('videoPlayer');
+            if (videoPlayer) {
+                var nextVideoSrc = videoSources[currentVideoIndex];
+                videoPlayer.src = nextVideoSrc;
+                videoPlayer.load();
+                videoPlayer.play();
+            }
+            currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+        }
+
+        videoPlayer.addEventListener('ended', switchToNextVideo);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            switchToNextVideo();
+        });
+    </script>
+     <style>
+        /* 其他样式保持不变 */
+        #movingImage {
+            position: absolute;
+            width: 100px; /* 根据实际图片大小调整 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 图片元素 -->
+    <img id="movingImage" src="https://img.picui.cn/free/2024/08/30/66d0f6cabefe6.jpg" alt="Moving Image">
+
+    <!-- 其他内容可以放在这里 -->
+
+    <script>
+        // 获取图片元素
+        var movingImage = document.getElementById('movingImage');
+
+        // 定义移动范围
+        var maxX = window.innerWidth - movingImage.offsetWidth;
+        var maxY = window.innerHeight - movingImage.offsetHeight;
+
+        // 定义移动速度和方向
+        var speedX = 2; // 初始水平速度
+        var speedY = 2; // 初始垂直速度
+        var directionX = 1; // 水平方向，1 表示向右，-1 表示向左
+        var directionY = 1; // 垂直方向，1 表示向下，-1 表示向上
+
+        // 使用 requestAnimationFrame 实现平滑动画
+        function animate() {
+            var x = parseInt(movingImage.style.left || 0, 10) + speedX * directionX;
+            var y = parseInt(movingImage.style.top || 0, 10) + speedY * directionY;
+
+            // 边界检查和反弹逻辑
+            if (x > maxX || x < 0) {
+                directionX *= -1; // 水平反弹
+            }
+            if (y > maxY || y < 0) {
+                directionY *= -1; // 垂直反弹
+            }
+
+            movingImage.style.left = x + 'px';
+            movingImage.style.top = y + 'px';
+
+            // 递归调用 requestAnimationFrame
+            requestAnimationFrame(animate);
+        }
+
+        // 开始动画
+        requestAnimationFrame(animate);
+    </script>
+
+ 
+      <h1>我是李瑞锦</h1>
+     
+</body>
+</html>
