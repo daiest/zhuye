@@ -18,17 +18,12 @@
     <link rel="stylesheet" href="/static/css/style.css?v=1.33">
     
 <style>
-    :root {
-        --image-width: 500px; /* 假设图片的最大宽度为500px */
-        --image-height: 1000px; /* 假设图片的最大高度为300px */
-    }
-
     body {
         margin: 0;
         padding: 0;
-        background-repeat: repeat;
+        background-repeat: no-repeat;
         background-position: center;
-        background-size: auto;
+        background-size: cover; /* 默认情况下，背景图片覆盖整个屏幕 */
     }
 
     /* 电脑端样式 */
@@ -37,10 +32,10 @@
     }
 
     /* 手机端样式 */
-    @media only screen and (max-width: 600px), only screen and (max-height: 600px) {
+    @media only screen and (max-width: 600px) {
         body {
-            background-image: url('/static/img/shui.png');
-            background-size: var(--image-width) var(--image-height); /* 设置背景图片的最大尺寸 */
+            background-image: url('extension://odphnbhiddhdpoccbialllejaajemdio/imageExtractor.html?tabId=340667428&fetchLevel=0');
+            background-size: contain; /* 手机端图片按比例缩放以适应屏幕 */
         }
     }
 </style>
