@@ -1,39 +1,167 @@
-body{
-    color:#2C3E50;
-    font-size: 2em;
-}
-#button_panel{
-    display: block;
-    border-style: solid;
-    border-radius: 8px;
-    width: 420px;
-    margin:auto;
-    text-align: center;
-    border-color: #7F8C8D;
-}
-#show_panel{
-    display: block;
-    height: 50px;
-    width: 400px;
-    border-style: solid;
-    border-color:#7F8C8D;
-    border-radius: 8px;
-    text-align: right;
-    line-height: 50px;
-    margin:auto;
-}
-button {
-    background-color: #7F8C8D;
-    border-radius: 8px;
-    font-size: 20px;
-    color: #FFFFFF;
+<!DOCTYPE html>
+<html>
+<head>
+<title>科学计算器</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .calculator {
+    background-color: #fff;
     padding: 20px;
-    width: 100px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-button:hover{
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.40);
-}
-.result{
-    width: 205px;
-}
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .display {
+    width: 210px;
+    height: 30px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 18px;
+    text-align: right;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.6); /* 背景半透明 */
+  }
+  .display::placeholder {
+    color: rgba(173, 216, 230, 0.7); /* 浅蓝色半透明 */
+    font-style: italic;
+  }
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  button {
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    background-color: #add8e6; /* 浅蓝色背景 */
+    border: none;
+    border-radius: 50%; /* 更加圆润的按钮 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #94c7f1; /* 悬停时的背景颜色 */
+  }
+</style>
+</head>
+<body>
+
+<div class="calculator">
+  <input type="text" id="display" class="display" disabled placeholder="呆莲计算器">
+  <div class="buttons">
+    <button onclick="appendNumber('1')">1</button>
+    <button onclick="appendNumber('2')">2</button>
+    <button onclick="appendNumber('3')">3</button>
+    <button onclick="operation('+')">+</button>
+    <button onclick="appendNumber('4')">4</button>
+    <button onclick="appendNumber('5')">5</button>
+    <button onclick="appendNumber('6')">6</button>
+    <button onclick="operation('-')">-</button>
+    <button onclick="appendNumber('7')">7</button>
+    <button onclick="appendNumber('8')">8</button>
+    <button onclick="appendNumber('9')">9</button>
+    <button onclick="operation('*')">*</button>
+    <button onclick="appendNumber('0')">0</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="clearDisplay()">C</button>
+    <button onclick="operation('/')">/</button>
+    <button onclick="operation('sqrt')">√</button>
+    <button onclick="operation('sin')">sin</button>
+    <button onclick="operation('cos')">cos</button>
+    <button onclick="operation('tan')">tan</button>
+    <button onclick="operation('ln')">ln</button>
+    <button onclick="operation('log')">log</button>
+    <button onclick="operation('pow')">x²</button>
+    <button onclick="operation('%')">%</button>
+  </div>
+</div>
+
+<script>
+  let display = document.getElementById('display');
+  let currentInput = '';
+  let previousInput = '';
+  let operation = null;
+
+  function appendNumber(number) {
+    currentInput += number;
+    display.value = currentInput;
+  }
+
+  function operation(op) {
+    previousInput = currentInput;
+    currentInput = '';
+    operation = op;
+  }
+
+  function calculate() {
+    if (operation && previousInput && currentInput) {
+      switch (operation) {
+        case '+':
+          currentInput = parseFloat(previousInput) + parseFloat(currentInput);
+          break;
+        case '-':
+          currentInput = parseFloat(previousInput) - parseFloat(currentInput);
+          break;
+        case '*':
+          currentInput = parseFloat(previousInput) * parseFloat(currentInput);
+          break;
+        case '/':
+          if (currentInput !== '0') {
+            currentInput = parseFloat(previousInput) / parseFloat(currentInput);
+          } else {
+            alert('除数不能为0');
+            return;
+          }
+          break;
+        case 'sqrt':
+          currentInput = Math.sqrt(parseFloat(previousInput));
+          break;
+        case 'sin':
+          currentInput = Math.sin(parseFloat(previousInput) * Math.PI / 180);
+          break;
+        case 'cos':
+          currentInput = Math.cos(parseFloat(previousInput) * Math.PI / 180);
+          break;
+        case 'tan':
+          currentInput = Math.tan(parseFloat(previousInput) * Math.PI / 180);
+          break;
+        case 'ln':
+          currentInput = Math.log(parseFloat(previousInput));
+          break;
+        case 'log':
+          currentInput = Math.log10(parseFloat(currentInput));
+          break;
+        case 'pow':
+          currentInput = Math.pow(parseFloat(previousInput), 2);
+          break;
+        case '%':
+          currentInput = parseFloat(previousInput) / 100;
+          break;
+      }
+      display.value = currentInput;
+      operation = null;
+      previousInput = '';
+    } else {
+      display.value = '错误';
+    }
+  }
+
+  function clearDisplay() {
+    currentInput = '';
+    previousInput = '';
+    operation = null;
+    display.value = '';
+  }
+</script>
+
+</body>
+</html>
