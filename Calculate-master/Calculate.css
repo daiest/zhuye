@@ -1,46 +1,48 @@
- body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    #button_panel {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    #show_panel {
-      font-size: 18px;
-      text-align: right;
-      padding: 10px;
-      border-radius: 5px;
-      background-color: #e6f7ff;
-      color: #6996f7;
-      margin-bottom: 10px;
-    }
-
-    button {
-      background-color: #add8e6;
-      border: none;
-      border-radius: 50%;
-      padding: 10px 20px;
-      margin: 5px;
-      font-size: 16px;
-      color: #333;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #94c7f1;
-    }
-
-    .result {
-      border-radius: 10px;
-    }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .calculator {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .display {
+    width: 210px;
+    height: 30px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 18px;
+    text-align: right;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.6); /* 背景半透明 */
+  }
+  .display::placeholder {
+    color: rgba(173, 216, 230, 0.7); /* 浅蓝色半透明 */
+    font-style: italic;
+  }
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  button {
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    background-color: #add8e6; /* 浅蓝色背景 */
+    border: none;
+    border-radius: 50%; /* 更加圆润的按钮 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #94c7f1; /* 悬停时的背景颜色 */
+  }
