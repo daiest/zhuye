@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>呆荷软件库</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #add8e6;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            color: #fff;
+        }
+        .software-library {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .software-card {
+            background-color: #fff;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex-basis: calc(33% - 20px);
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+        }
+        .software-card:hover {
+            transform: translateY(-5px);
+        }
+        .software-card h2 {
+            margin: 0 0 10px 0;
+            color: #000;
+        }
+        .software-card p {
+            margin: 0;
+            font-size: 14px;
+        }
+        footer {
+            background-color: #add8e6;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>呆荷软件库</h1>
+</header>
+
+<div class="container">
+    <div class="software-library">
+        <div class="software-card">
+            <h2>软件名称1</h2>
+            <p>软件描述信息...</p>
+        </div>
+        <div class="software-card">
+            <h2>软件名称2</h2>
+            <p>软件描述信息...</p>
+        </div>
+        <div class="software-card">
+            <h2>软件名称3</h2>
+            <p>软件描述信息...</p>
+        </div>
+        <!-- 更多软件卡片 -->
+    </div>
+</div>
+
+<footer>
+    <p>版权所有 © 2023</p>
+</footer>
+
+</body>
+</html>
